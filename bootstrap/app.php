@@ -4,7 +4,7 @@ require_once __DIR__.'/../vendor/autoload.php';
 
 (new Laravel\Lumen\Bootstrap\LoadEnvironmentVariables(
     dirname(__DIR__)
-))->bootstrap();
+))->bootstrap(); 
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +24,14 @@ $app = new Laravel\Lumen\Application(
 $app->withFacades();
 
 $app->withEloquent();
+
+/**
+ * Registering config files
+ */
+
+  $app->configure('services');
+  $app->configure('cors');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -58,12 +66,19 @@ $app->singleton(
 */
 
 // $app->middleware([
-//     App\Http\Middleware\ExampleMiddleware::class
+//     // App\Http\Middleware\ExampleMiddleware::class
+//     \Barryvdh\Cors\HandleCors::class,
 // ]);
 
 $app->routeMiddleware([
     'auth' => App\Http\Middleware\Authenticate::class,
 ]);
+
+
+
+// $app->middleware([
+//     App\Http\Middleware\CorsMiddleware::class
+//  ]);
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +91,7 @@ $app->routeMiddleware([
 |
 */
 
+$app->register(Barryvdh\Cors\ServiceProvider::class);
 $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);

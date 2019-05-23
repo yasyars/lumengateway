@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        \Laravelista\LumenVendorPublish\VendorPublishCommand::class
     ];
 
     /**
@@ -24,6 +24,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        //
+       
     }
+
+    protected $middleware = [
+        // ...
+        \Barryvdh\Cors\HandleCors::class,
+    ];
+
+    
 }

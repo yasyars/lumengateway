@@ -11,15 +11,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function registerRoutes()
+    public function register()
     {
-        $registry = $this->app->make(RouteRegistry::class);
-
-        if ($registry->isEmpty()){
-            Log::info('Not adding any service routes -- route file is missing');
-            return;
-        }
-
-        $registry->bind(app());
     }
 }

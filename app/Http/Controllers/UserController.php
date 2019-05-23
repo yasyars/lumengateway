@@ -13,8 +13,11 @@ class UserController extends Controller
      * @return void
      */
 
-    public function __construct()
+    public $taskService;
+
+    public function __construct(TaskService $taskService)
     {
+        $this->taskService = $taskService; 
     }
 
     public function getProfile($username)
